@@ -25,6 +25,9 @@ use App\Http\Controllers\MockExamQuestionController;
 use App\Http\Controllers\MockExamSessionController;
 use App\Http\Controllers\MockExamSessionMonitorController;
 use App\Http\Controllers\PartController;
+use App\Http\Controllers\QaBoardAdminController;
+use App\Http\Controllers\QaBoardController;
+use App\Http\Controllers\QaBoardReplyController;
 use App\Http\Controllers\QuestionCategoryController;
 use App\Http\Controllers\QuizHistoryController;
 use App\Http\Controllers\QuizStatsController;
@@ -474,3 +477,45 @@ if (app()->environment('local')) {
         return view('_dev.components');
     })->name('_dev.components');
 }
+
+// ============================================================
+// QA掲示板
+// ============================================================
+Route::middleware(['auth', 'role:student', 'active-learning'])->group(
+    function () {
+        Route::get('/qa-board/create', [QaBoardController::class, 'create'])->name('qa-board.create');
+        Route::post('/qa-board', [QaBoardController::class, 'store'])->name('qa-board.store');
+    }
+);
+
+Route::middleware(['auth', 'role:student,coach', 'active-learning'])->group(
+    function () {
+        Route::get('/qa-board', [QaBoardController::class, 'index'])->name('qa-board.index');
+        Route::get('/qa-board/{thread}', [QaBoardController::class, 'show'])->name('qa-board.show');
+        Route::post('/qa-board/{thread}/replies', [QaBoardReplyController::class, 'store'])->name('qa-board.replies.store');
+    }
+
+);
+
+Route::middleware(['auth', 'active-learning'])->group(
+    function () {
+        Route::get('/qa-board/{thread}/edit', [QaBoardController::class, 'edit'])->name('qa-board.edit');
+        Route::patch('/qa-board/{thread}', [QaBoardController::class, 'update'])->name('qa-board.update');
+        Route::delete('/qa-board/{thread}', [QaBoardController::class, 'destroy'])->name('qa-board.destroy');
+        Route::post('/qa-board/{thread}/resolve', [QaBoardController::class, 'resolve'])->name('qa-board.resolve');
+        Route::post('/qa-board/{thread}/unresolve', [QaBoardController::class, 'unresolve'])->name('qa-board.unresolve');
+        Route::get('/qa-board/{thread}/replies/{reply}/edit', [QaBoardReplyController::class, 'edit'])->name('qa-board.replies.edit');
+        Route::patch('/qa-board/{thread}/replies/{reply}', [QaBoardReplyController::class, 'update'])->name('qa-board.replies.update');
+        Route::delete('/qa-board/{thread}/replies/{reply}', [QaBoardReplyController::class, 'destroy'])->name('qa-board.replies.destroy');
+    }
+
+);
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
+    Route::get('qa-board', [QaBoardAdminController::class, 'index'])
+        ->name('admin.qa-board.index');
+    Route::get('qa-board/{thread}', [QaBoardAdminController::class, 'show'])
+        ->name('admin.qa-board.show');
+    Route::delete('qa-board/{thread}', [QaBoardAdminController::class, 'destroy'])->name('admin.qa-board.destroy');
+    Route::delete('qa-board/{thread}/replies/{reply}', [QaBoardAdminController::class, 'destroyReply'])->name('admin.qa-board.replies.destroy');
+
+});
