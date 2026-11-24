@@ -113,4 +113,16 @@ class IndexTest extends TestCase
         $this->assertSame(20, $certs->perPage());
         $this->assertSame(22, $certs->total());
     }
+
+    public function test_coach_without_assignments_sees_empty_list(): void
+    {
+        $coach = User::factory()->coach()->create();
+        Certification::factory()->published()->create(['name' => 'Unassigned Cert']);
+
+        $response = $this->actingAs($coach)->get(route('admin.certifications.index'));
+
+        $response->assertOk();
+        $response->assertDontSee('Unassigned Cert');
+        $response->assertSee('該当する資格マスタがありません');
+    }
 }
