@@ -265,11 +265,40 @@ class OnboardingTest extends TestCase
             'password_confirmation' => 'different-pass',
         ]);
 
-        $response->assertSessionHasErrors('password');
+        $response->assertRedirect($this->signedShowUrl($invitation));
+        $response->assertSessionHasErrors(['password' => 'パスワード と確認用の入力が一致しません。']);
         $this->assertDatabaseHas('users', [
             'id' => $invitation->user_id,
             'status' => UserStatus::Invited->value,
         ]);
+    }
+
+    public function test_store_rejects_missing_password_confirmation(): void
+    {
+        $invitation = $this->freshInvitation();
+
+        $response = $this->from($this->signedShowUrl($invitation))->post($this->postUrl($invitation), [
+            'name' => '受講太郎',
+            'password' => 'secret-pass',
+        ]);
+
+        $response->assertSessionHasErrors('password');
+        $this->assertGuest();
+    }
+
+    public function test_store_returns_422_for_mismatched_password_confirmation_in_json(): void
+    {
+        $invitation = $this->freshInvitation();
+
+        $response = $this->postJson($this->postUrl($invitation), [
+            'name' => '受講太郎',
+            'password' => 'secret-pass',
+            'password_confirmation' => 'different-pass',
+        ]);
+
+        $response->assertStatus(422);
+        $response->assertJsonValidationErrors('password');
+        $this->assertGuest();
     }
 
     public function test_store_requires_meeting_url_for_coach_invitation(): void
