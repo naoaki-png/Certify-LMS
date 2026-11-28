@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Hash;
  *
  * - status を invited → in_progress に更新し、Plan 期間(`plan_started_at` / `plan_expires_at`)を確定する
  * - コーチ宛て招待では `meeting_url` を必須項目として保存する(空文字 / 未指定は FormRequest で 422 に弾く前提)
+ * - 招待を使用済み(accepted)にし、同じ招待 URL を再利用できないようにする
  * - 初期付与の面談回数を MeetingQuotaTransaction(`granted_initial`)として起票する(残数集計の整合性のため `User.max_meetings`
  *   とは別経路で履歴を残す)
  * - 全 DB 操作は `DB::transaction()` で囲み、自動ログインは commit 後に実施する
@@ -43,8 +44,9 @@ final class OnboardAction
     public function __invoke(Invitation $invitation, array $validated): User
     {
         $user = DB::transaction(function () use ($invitation, $validated) {
-            $invitation->refresh();
-            $user = $invitation->user;
+            // 同時送信で二重に成立しないよう、招待の行をロックしてから状態を確認する
+            $invitation = Invitation::query()->whereKey($invitation->id)->lockForUpdate()->first();
+            $user = $invitation?->user;
 
             if (
                 $user === null
@@ -90,6 +92,11 @@ final class OnboardAction
             );
 
             $user->forceFill($attrs)->save();
+
+            $invitation->forceFill([
+                'status' => InvitationStatus::Accepted,
+                'accepted_at' => $now,
+            ])->save();
 
             // 面談クォータは受講生固有の消費対象。コーチは面談を提供する側のため初期付与しない。
             if ($user->role === UserRole::Student && $user->plan->default_meeting_quota > 0) {

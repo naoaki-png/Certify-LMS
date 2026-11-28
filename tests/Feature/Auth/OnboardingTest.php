@@ -9,11 +9,13 @@ use App\Enums\MeetingQuotaTransactionType;
 use App\Enums\UserRole;
 use App\Enums\UserStatus;
 use App\Models\Invitation;
+use App\Models\MeetingQuotaTransaction;
 use App\Models\Plan;
 use App\Models\User;
 use App\Services\InvitationTokenService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\URL;
+use RuntimeException;
 use Tests\TestCase;
 
 /**
@@ -203,6 +205,68 @@ class OnboardingTest extends TestCase
         $this->assertDatabaseHas('invitations', [
             'id' => $invitation->id,
             'status' => InvitationStatus::Accepted->value,
+        ]);
+    }
+
+    public function test_show_renders_invalid_view_after_onboarding_completed(): void
+    {
+        $invitation = $this->freshInvitation();
+        $url = $this->signedShowUrl($invitation);
+        $this->post($this->postUrl($invitation), [
+            'name' => '受講太郎',
+            'password' => 'secret-pass',
+            'password_confirmation' => 'secret-pass',
+        ]);
+        auth()->logout();
+
+        $response = $this->get($url);
+
+        $response->assertOk();
+        $response->assertViewIs('auth.invitation-invalid');
+    }
+
+    public function test_store_rejects_resubmission_with_used_invitation(): void
+    {
+        $invitation = $this->freshInvitation();
+        $url = $this->postUrl($invitation);
+        $this->post($url, [
+            'name' => '受講太郎',
+            'password' => 'secret-pass',
+            'password_confirmation' => 'secret-pass',
+        ]);
+        auth()->logout();
+
+        $response = $this->post($url, [
+            'name' => '上書き次郎',
+            'password' => 'another-pass',
+            'password_confirmation' => 'another-pass',
+        ]);
+
+        $response->assertStatus(410);
+        $this->assertSame('受講太郎', $invitation->user->fresh()->name);
+        $this->assertGuest();
+    }
+
+    public function test_store_keeps_invitation_pending_when_onboarding_fails(): void
+    {
+        $invitation = $this->freshInvitation();
+        MeetingQuotaTransaction::creating(fn () => throw new RuntimeException('failed'));
+
+        $response = $this->post($this->postUrl($invitation), [
+            'name' => '受講太郎',
+            'password' => 'secret-pass',
+            'password_confirmation' => 'secret-pass',
+        ]);
+
+        $response->assertStatus(500);
+        $this->assertDatabaseHas('invitations', [
+            'id' => $invitation->id,
+            'status' => InvitationStatus::Pending->value,
+            'accepted_at' => null,
+        ]);
+        $this->assertDatabaseHas('users', [
+            'id' => $invitation->user_id,
+            'status' => UserStatus::Invited->value,
         ]);
     }
 
