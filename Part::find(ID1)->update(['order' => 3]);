@@ -1,0 +1,149 @@
+[90m= [39m[34;4mIlluminate\Database\Eloquent\Collection[39;24m {#8348
+    [34mall[39m: [
+      [34;4mApp\Models\Part[39;24m {#8350
+        [34mid[39m: [32m"[39m[32m01m59ybw5fpqq0drbp4f969ffd[39m[32m"[39m,
+        [34morder[39m: [35m1[39m,
+        [34mtitle[39m: [32m"[39m[32m第1部 基礎理論[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8351
+        [34mid[39m: [32m"[39m[32m01m59ybwpfckhq9g3djn479wne[39m[32m"[39m,
+        [34morder[39m: [35m2[39m,
+        [34mtitle[39m: [32m"[39m[32m第2部 コンピュータシステム[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8352
+        [34mid[39m: [32m"[39m[32m01m59ybwr80xsn8nzfz9bnhk4h[39m[32m"[39m,
+        [34morder[39m: [35m1[39m,
+        [34mtitle[39m: [32m"[39m[32m第1部 セキュリティ[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8353
+        [34mid[39m: [32m"[39m[32m01m59yc0tsnryfg8n6mvjraqg9[39m[32m"[39m,
+        [34morder[39m: [35m66[39m,
+        [34mtitle[39m: [32m"[39m[32m第6部 et[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8354
+        [34mid[39m: [32m"[39m[32m01m59yc0x64dpaepq6q3we81qc[39m[32m"[39m,
+        [34morder[39m: [35m41[39m,
+        [34mtitle[39m: [32m"[39m[32m第10部 non[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8355
+        [34mid[39m: [32m"[39m[32m01m59yc10c21fwgdn93zqt6yny[39m[32m"[39m,
+        [34morder[39m: [35m20[39m,
+        [34mtitle[39m: [32m"[39m[32m第10部 dolore[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8356
+        [34mid[39m: [32m"[39m[32m01m59yc13kct2wp68ydejqesw5[39m[32m"[39m,
+        [34morder[39m: [35m85[39m,
+        [34mtitle[39m: [32m"[39m[32m第8部 dicta[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8357
+        [34mid[39m: [32m"[39m[32m01m59yc16q8j4sw9v0fjn9w250[39m[32m"[39m,
+        [34morder[39m: [35m86[39m,
+        [34mtitle[39m: [32m"[39m[32m第9部 et[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8358
+        [34mid[39m: [32m"[39m[32m01m59yc18wbrwxz58e7w4h9d5g[39m[32m"[39m,
+        [34morder[39m: [35m68[39m,
+        [34mtitle[39m: [32m"[39m[32m第6部 a[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8359
+        [34mid[39m: [32m"[39m[32m01m59yc1cka5wf8wgr7t0ff46m[39m[32m"[39m,
+        [34morder[39m: [35m64[39m,
+        [34mtitle[39m: [32m"[39m[32m第8部 ex[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8360
+        [34mid[39m: [32m"[39m[32m01m59yc1ew04mxf88rtqsxm8qy[39m[32m"[39m,
+        [34morder[39m: [35m45[39m,
+        [34mtitle[39m: [32m"[39m[32m第7部 et[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8361
+        [34mid[39m: [32m"[39m[32m01m59yc1j7rge8zj6k5hq399zn[39m[32m"[39m,
+        [34morder[39m: [35m90[39m,
+        [34mtitle[39m: [32m"[39m[32m第8部 et[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8362
+        [34mid[39m: [32m"[39m[32m01m59yc1nckekc6tr0zz3wpggp[39m[32m"[39m,
+        [34morder[39m: [35m72[39m,
+        [34mtitle[39m: [32m"[39m[32m第10部 deleniti[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8363
+        [34mid[39m: [32m"[39m[32m01m59yc1qqs44zc27n6va8dd85[39m[32m"[39m,
+        [34morder[39m: [35m72[39m,
+        [34mtitle[39m: [32m"[39m[32m第2部 voluptate[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8364
+        [34mid[39m: [32m"[39m[32m01m59yc1vamxwa9w9cggv5gwgd[39m[32m"[39m,
+        [34morder[39m: [35m76[39m,
+        [34mtitle[39m: [32m"[39m[32m第8部 ea[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8365
+        [34mid[39m: [32m"[39m[32m01m59yc1z2rbtwtbxcwfvhvvs2[39m[32m"[39m,
+        [34morder[39m: [35m11[39m,
+        [34mtitle[39m: [32m"[39m[32m第7部 vero[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8366
+        [34mid[39m: [32m"[39m[32m01m59yc21e5c8gcfk5d8dedz72[39m[32m"[39m,
+        [34morder[39m: [35m48[39m,
+        [34mtitle[39m: [32m"[39m[32m第4部 fugiat[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8367
+        [34mid[39m: [32m"[39m[32m01m59yc23v3ptjpgxb6ndhzrsz[39m[32m"[39m,
+        [34morder[39m: [35m5[39m,
+        [34mtitle[39m: [32m"[39m[32m第7部 et[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8368
+        [34mid[39m: [32m"[39m[32m01m59yc26898fmy4yvc5mchfc0[39m[32m"[39m,
+        [34morder[39m: [35m71[39m,
+        [34mtitle[39m: [32m"[39m[32m第8部 est[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8369
+        [34mid[39m: [32m"[39m[32m01m59yc2a4q3chnf9nrx64s4d8[39m[32m"[39m,
+        [34morder[39m: [35m6[39m,
+        [34mtitle[39m: [32m"[39m[32m第10部 ut[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8370
+        [34mid[39m: [32m"[39m[32m01m59yc2can2df5bx8avakmret[39m[32m"[39m,
+        [34morder[39m: [35m20[39m,
+        [34mtitle[39m: [32m"[39m[32m第5部 hic[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8371
+        [34mid[39m: [32m"[39m[32m01m59yc2ff4v790edre40q62mz[39m[32m"[39m,
+        [34morder[39m: [35m50[39m,
+        [34mtitle[39m: [32m"[39m[32m第3部 sint[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8372
+        [34mid[39m: [32m"[39m[32m01m59yc2hqtqdmqnv9jpnpsmen[39m[32m"[39m,
+        [34morder[39m: [35m19[39m,
+        [34mtitle[39m: [32m"[39m[32m第3部 perspiciatis[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8373
+        [34mid[39m: [32m"[39m[32m01m59yc2mm3yv7jw6sbkxfepf2[39m[32m"[39m,
+        [34morder[39m: [35m42[39m,
+        [34mtitle[39m: [32m"[39m[32m第3部 veniam[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8374
+        [34mid[39m: [32m"[39m[32m01m59yc2r14gy8yqdp8af9d1k0[39m[32m"[39m,
+        [34morder[39m: [35m68[39m,
+        [34mtitle[39m: [32m"[39m[32m第7部 ut[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8375
+        [34mid[39m: [32m"[39m[32m01m59yc2t5s2sa9bewe21jysy5[39m[32m"[39m,
+        [34morder[39m: [35m23[39m,
+        [34mtitle[39m: [32m"[39m[32m第5部 consequatur[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8376
+        [34mid[39m: [32m"[39m[32m01m59yc2x6034cd6wxttyzge5g[39m[32m"[39m,
+        [34morder[39m: [35m38[39m,
+        [34mtitle[39m: [32m"[39m[32m第5部 ipsum[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8377
+        [34mid[39m: [32m"[39m[32m01m8413303pm929pag9te9gm08[39m[32m"[39m,
+        [34morder[39m: [35m1[39m,
+        [34mtitle[39m: [32m"[39m[32mx z[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Part[39;24m {#8378
+        [34mid[39m: [32m"[39m[32m01m86s786ry68fsbg4qxhc4fv4[39m[32m"[39m,
+        [34morder[39m: [35m2[39m,
+        [34mtitle[39m: [32m"[39m[32mfdクェイサーgewgfwa[39m[32m"[39m,
+      },
+    ],
+  }
