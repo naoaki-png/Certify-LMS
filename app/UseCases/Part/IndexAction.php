@@ -19,6 +19,8 @@ final class IndexAction
     public function __invoke(Certification $certification): Collection
     {
         return $certification->parts()
+            ->ordered()
+            ->orderBy('id')
             ->with(['chapters' => fn ($q) => $q->ordered()->withCount('sections')])
             ->get();
     }

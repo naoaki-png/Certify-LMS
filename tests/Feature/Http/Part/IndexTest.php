@@ -81,4 +81,23 @@ class IndexTest extends TestCase
             'Part 一覧は order 昇順で並ぶはず(登録順ではない)',
         );
     }
+
+    public function test_parts_with_same_order_are_listed_by_id_ascending(): void
+    {
+        // Arrange: order が同じ Part を、ID の大きいものから先に登録する
+        $admin = User::factory()->admin()->create();
+        $cert = Certification::factory()->published()->create();
+        $ids = ['01arz3ndektsv4rrffq69g5fa1', '01arz3ndektsv4rrffq69g5fa2', '01arz3ndektsv4rrffq69g5fa3'];
+        foreach (array_reverse($ids) as $id) {
+            Part::factory()->forCertification($cert)->create(['id' => $id, 'order' => 1]);
+        }
+
+        // Act
+        $response = $this->actingAs($admin)
+            ->get(route('admin.certifications.parts.index', $cert));
+
+        // Assert
+        $response->assertOk();
+        $this->assertSame($ids, $response->viewData('parts')->pluck('id')->all());
+    }
 }
